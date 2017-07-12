@@ -1,66 +1,76 @@
-app.controller('DirectivesController' , function($scope, $attrs){
+app.controller('DirectivesController', function ($scope) {
 
-console.log($attrs.title);
+  //Dataset Values
+  var dataset_values = [];
+  for (i=0; i<$scope.dataset.data.length; i++){
+    dataset_values[i] = $scope.dataset.data[i].value
+  }
 
-//Line Diagram
-$scope.chartConfig = {
-  title: {
-        text: $attrs.title
+  //Dataset Dates
+
+  //Dataset Status
+
+  // Line Diagram Configuration
+  $scope.chartConfig = {
+    title: {
+      text: $scope.info.title //from attribute info
     },
 
     subtitle: {
-        text: 123
+      text: $scope.info.subtitle
     },
 
     chart: {
       marginBottom: 100,
-      renderTo: 'line-diagram',
-    }, 
+      renderTo: 'line-diagram', //id of highchart directive
+      type: 'line',
+      alignTicks: false
+    },
 
-    yAxis: {
-    title: {
-          text: 'Date'
-        }
+    xAxis: {
+      title: {
+        text: 'Time'
+      }
     },
 
     yAxis: {
-        title: {
-            text: 'CPU Usage %'
-        }
+      title: {
+        text: 'CPU Usage %'
+      },
+      max: $scope.info.max,
+      min:$scope.info.min,
     },
 
     legend: {
-        align: 'center',
-        verticalAlign: 'bottom',
-        x: 0,
-        y: 0
+      align: 'center',
+      verticalAlign: 'bottom',
+      x: 0,
+      y: 0
     },
 
-    plotOptions: {
-        series: {
-            pointStart: 2010
-        }
+    plotOptions: {  
+      series: {
+        pointStart: 2010
+      }
     },
 
     series: [{
-        name: 'CPU1',
-        data: [5, 23, 32, 51, 21, 19, 87, 88]
+      name: 'Database: my_db',
+      data: dataset_values //[2, 2, 5, 5, 5, 5, 8, 1]
     }],
 
-  responsive: {
-    rules: [{
-      condition: {
-        maxWidth: 300
-      },
-      chartOptions: {
-        legend: {
-          enabled: false
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 1000
+        },
+        chartOptions: {
+          legend: {
+            enabled: false
+          }
         }
-      }
-    }]
+      }]
+    }
+
   }
-
-
-  };
-  
-});
+})

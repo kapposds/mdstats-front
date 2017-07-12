@@ -1,3 +1,3 @@
-app.controller('ConfigurationController', function($scope) {
+app.controller('ConfigurationController', function ($scope) {
 
-});
+})

@@ -1,10 +1,13 @@
 <ion-view view-title="Diagrams">
   <ion-content>
 
-  		<line-diagram title="kaka">
-  		
+  		<line-diagram ng-if="cpuDataset"
+  					  info="diagramStaticInfo.cpu"
+  					  dataset="cpuDataset"
+  		>
+
   		</line-diagram>
-  		  		{{kaka}}
+
   	</div>
   </ion-content>
 </ion-view>
