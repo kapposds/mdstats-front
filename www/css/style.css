@@ -1,5 +1,6 @@
 /*charts container */
-div#container1 , div#line-diagram{
-	width:100% !important;
-	height:300px;
+#container1, #line-diagram{
+    height: 300px;
+    width: 100%;
+    display:block;
 }

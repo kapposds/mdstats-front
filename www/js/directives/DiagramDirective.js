@@ -5,7 +5,8 @@ app.directive('lineDiagram', function() {
 	return {
 		templateUrl:'templates/line-diagram.html',
 		restrict:'EA',
-		controller: 'DirectivesController',/*,
+		controller: 'DirectivesController',
+		scope: {title : "=", subtitle: "=", max_value: "=", min_value: "="},/*,
 		link: linkFunction,
 		scope:
 		{

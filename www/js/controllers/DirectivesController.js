@@ -1,23 +1,27 @@
-app.controller('DirectivesController' , function($scope){
-	
+app.controller('DirectivesController' , function($scope, $attrs){
 
+console.log($attrs.title);
 
-	//Line Diagram
-  $scope.chartConfig = {
-	title: {
-        text: 'CPU'
+//Line Diagram
+$scope.chartConfig = {
+  title: {
+        text: $attrs.title
     },
 
     subtitle: {
-        text: 'from then to then'
+        text: 123
     },
-
-
 
     chart: {
       marginBottom: 100,
       renderTo: 'line-diagram',
     }, 
+
+    yAxis: {
+    title: {
+          text: 'Date'
+        }
+    },
 
     yAxis: {
         title: {
@@ -39,24 +43,24 @@ app.controller('DirectivesController' , function($scope){
     },
 
     series: [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        name: 'CPU1',
+        data: [5, 23, 32, 51, 21, 19, 87, 88]
     }],
 
-	responsive: {
-	  rules: [{
-	    condition: {
-	      maxWidth: 300
-	    },
-	    chartOptions: {
-	      legend: {
-	        enabled: false
-	      }
-	    }
-	  }]
-	}
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 300
+      },
+      chartOptions: {
+        legend: {
+          enabled: false
+        }
+      }
+    }]
+  }
 
 
   };
-
+  
 });
