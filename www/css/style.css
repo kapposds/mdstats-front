@@ -1,1 +1,5 @@
-/* Empty. Add your own CSS if you like */
+/*charts container */
+div#container1 , div#line-diagram{
+	width:100% !important;
+	height:300px;
+}
