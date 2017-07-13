@@ -7,10 +7,6 @@ app.directive('lineDiagram', function () {
     restrict: 'EA',
     controller: 'DirectivesController',
     scope: {info: '=', dataset: '='}/*,
-		link: linkFunction,
-		scope:
-		{
-			json_breadcrumbs:'@'
-		} */
+		link: linkFunction, */
   }
 })

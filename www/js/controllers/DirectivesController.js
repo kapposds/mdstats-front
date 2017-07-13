@@ -1,5 +1,8 @@
-app.controller('DirectivesController', function ($scope) {
+app.controller('DirectivesController', function ($scope/*, $watch*/) {
 
+  // $scope.$watch("dataset",function(newValue,oldValue) {
+  //     console.log(newValue);
+  // });
 
   //Dataset Values
   var dataset_values = [];

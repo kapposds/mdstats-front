@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-app = angular.module('mdstats', ['ionic', 'mdstats.controllers', 'highcharts-ng','ngResource'])
+app = angular.module('mdstats', ['ionic', 'mdstats.controllers', 'highcharts-ng','ngResource','ionic-material'])
   .constant('ApiEndpoint', {
-    url: 'http://localhost:5000' // api endpoint: address where laravel project "csunipi_server" is served
+    url: 'http://192.168.1.2:5000' // api endpoint: address where laravel project "csunipi_server" is served
   })
 
 app.run(function ($ionicPlatform) {

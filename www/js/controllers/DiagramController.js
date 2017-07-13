@@ -1,23 +1,45 @@
-app.controller('DiagramController', function ($scope, $http, ApiEndpoint , CPUResource) {
+app.controller('DiagramController', function ($scope, $http, $interval, ApiEndpoint , CPUResource) {
 
   // $http.get(ApiEndpoint.url + '/api/cpu')
   //   .success(function (response) {
-  //     var cpuDataset = response
-
-  //     $scope.assignResponse(cpuDataset)
-
+  //     $scope.cpuDataset = response
+  //     console.log('ela kalispera')
   //   })
 
-    CPUResource.get({}).$promise.then(function(response){
-      $scope.cpuDataset = response
-      console.log($scope.cpuDataset);
-    });
+    $interval(function(){//run every 10(should be dynamically configured by user) seconds to refresh dataset
 
-    CPUResource.get({}).$promise.then(function(response){
-      $scope.ramDataset = response
-      console.log($scope.ramDataset);
-    });    
+      refreshDatasets();
 
+    },1000);
+
+    refreshDatasets = function(){
+
+      CPUResource.get({}).$promise.then(
+        function(response){
+          $scope.cpuDataset = response
+          console.log($scope.cpuDataset)
+        },
+        function(reason) {
+          alert('Error: ' + reason);
+        });
+
+      CPUResource.get({}).$promise.then(
+        function(response){
+          $scope.ramDataset = response
+          console.log($scope.ramDataset)
+        },
+        function(reason) {
+          alert('Error: ' + reason);
+        });    
+
+    }
+
+    $scope.test = 0;
+    $interval(function(){//run every 10(should be dynamically configured by user) seconds to refresh dataset
+
+    $scope.test++;
+
+    },1000);
 
     // if($scope.cpuDataset){
     //   console.log("iparxi dataset");
