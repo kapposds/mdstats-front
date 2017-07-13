@@ -1,5 +1,6 @@
 app.controller('DirectivesController', function ($scope) {
 
+
   //Dataset Values
   var dataset_values = [];
   for (i=0; i<$scope.dataset.data.length; i++){
@@ -35,7 +36,7 @@ app.controller('DirectivesController', function ($scope) {
 
     yAxis: {
       title: {
-        text: 'CPU Usage %'
+        text: $scope.info.xaxis_text
       },
       max: $scope.info.max,
       min:$scope.info.min,
@@ -73,4 +74,8 @@ app.controller('DirectivesController', function ($scope) {
     }
 
   }
+
+
+
+
 })

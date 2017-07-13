@@ -3,11 +3,14 @@
 
   		<line-diagram ng-if="cpuDataset"
   					  info="diagramStaticInfo.cpu"
-  					  dataset="cpuDataset"
-  		>
-
+  					  dataset="cpuDataset">
   		</line-diagram>
 
-  	</div>
+  		<line-diagram ng-if="ramDataset"
+  					  info="diagramStaticInfo.memory"
+  					  dataset="ramDataset">
+  		</line-diagram>  		
+
+
   </ion-content>
 </ion-view>
