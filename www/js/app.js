@@ -24,9 +24,10 @@ app.run(function ($ionicPlatform) {
   })
 })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-
+    //use custom interceptor to httpProvider service
+    // $httpProvider.interceptors.push('httpInterceptor');
 
     $stateProvider
 
