@@ -4,3 +4,11 @@ app.factory('CPUResource', function($resource, ApiEndpoint){
 	      'get': { method:'GET' , isArray: false },
 	  });
 });
+
+app.factory('ConfigResource', function($resource, ApiEndpoint){
+	return $resource(ApiEndpoint.url+"/api/config", null,
+	  {
+	      'get': { method:'GET' , isArray: false },
+	      'update': {method:'PATCH'}	      
+	  });
+});

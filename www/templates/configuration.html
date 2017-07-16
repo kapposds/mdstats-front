@@ -1,5 +1,141 @@
 <ion-view view-title="Configuration">
   <ion-content>
 
+  	<!-- IP , Port -->
+	<div class="primary-divider item-divider">
+		<span>Server Info</span>
+	</div>
+
+ 	<form ng-submit="saveServerInfo(serverInfo)">
+		<div class="list">
+		  <label class="item item-input">
+		  	 <div class="row">
+			     <div class="col col-33">
+			     	<span class="input-label  primary-label">IP</span>
+			     </div>
+			     <div class="col col-67">
+			     	<input type="text" placeholder="10.0.0.1" ng-model="serverInfo.ip">
+	<!-- 		     	<input type="text" ng-model='serverInfo.ip' ng-pattern='/^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/' placeholder='0.0.0.0'>		 -->     	
+			     </div>
+		     </div>
+		  </label>
+
+		  <label class="item item-input">
+		  	<div class="row">	  
+				<div class="col col-33">	 
+				    <span class="input-label primary-label">Port</span>
+			    </div>		    
+			     <div class="col col-67">	    
+				    <input type="text" placeholder="8080" ng-model="serverInfo.port">
+			     </div>		    
+			</div>
+		  </label>
+		</div>
+        <div class="padding">
+            <button type="submit" class="button button-block button-positive">Save Changes</button>
+        </div>		
+	</form>
+
+  <!-- Limits -->
+
+  <div class="primary-divider item-divider">
+    <span>Limits</span>
+  </div>  
+
+  <!-- CPU Status-->
+  <div class="secondary-divider item-divider">
+    <span>CPU</span>
+  </div>
+
+  	<form ng-submit="saveLimits(limits)">
+		<div class="list">
+		  <label class="item item-input ">
+		  	<div class="row">
+			     <div class="col col-33">	  	
+				    <span class="input-label">Green up to </span>
+				</div>
+			     <div class="col col-33">		
+				    <input type="text" ng-model="limits.cpu.green">
+				</div>
+			    <div class="col col-33">		
+				    <span class="input-label measurement-unit">%</span>	
+				</div> 
+			</div>   
+		  </label>
+
+		  <label class="item item-input">
+		  	<div class="row">	  	
+			    <div class="col col-33">	  	
+				    <span class="input-label">Yellow up to</span>
+				</div>
+			     <div class="col col-33">		
+				    <input type="text" ng-model="limits.cpu.yellow">
+				</div>
+			    <div class="col col-33">		
+				    <span class="input-label measurement-unit">%</span>	 
+				</div>   	
+			</div>
+	   
+		  </label>
+		</div>	
+
+
+	  <!-- Memory Status-->
+	  <div class="secondary-divider item-divider">
+	    <span>Memory</span>
+	  </div>
+
+
+		<div class="list">
+		  <label class="item item-input">
+		  	<div class="row">	  	
+			    <div class="col col-33">	  	
+			    	<span class="input-label">Green up to </span>
+				</div>
+			     <div class="col col-33">		
+			    	<input type="text" ng-model="limits.memory.green">
+				</div>
+			    <div class="col col-33">		
+			    	<span class="input-label measurement-unit">MB</span>	
+				</div>   
+			</div>	        
+		  </label>
+
+		  <label class="item item-input">
+		  	<div class="row">	  	
+			    <div class="col col-33">	  	
+				    <span class="input-label">Yellow up to</span>
+				</div>
+			     <div class="col col-33">		
+				    <input type="text" ng-model="limits.memory.yellow">
+				</div>
+			    <div class="col col-33">		
+				    <span class="input-label measurement-unit">MB</span>	
+				</div>   	
+			</div>
+		  </label>
+		</div>	
+        <div class="padding">
+            <button type="submit" class="button button-block button-positive">Save Changes</button>
+        </div>		
+	</form>
+
+	<!-- Toggles -->
+  <div class="primary-divider item-divider">
+    <span>User Preferences</span>
+  </div>  
+
+	<ul class="list">
+	  <li class="item item-toggle">
+	     <span class="input-label">Notifications</span>
+	     <label class="toggle toggle-assertive">
+	       <input type="checkbox" ng-model="userPreferences.notifications">
+	       <div class="track">
+	         <div class="handle"></div>
+	       </div>
+	     </label>
+	  </li>
+	</ul>	
+
   </ion-content>
 </ion-view>

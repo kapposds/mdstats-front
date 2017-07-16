@@ -1,6 +1,50 @@
+/*side menu---------------------------------------------------------------*
+/*hamburger button*/
+.bar .button.button-clear {
+    /*color: #000;*/
+}
+/*diagrams---------------------------------------------------------------*/
 /*charts container */
 .line-diagram{
     height: 300px;
     width: 100%;
     display:block;
+}
+
+/*configuration---------------------------------------------------------*/
+/*span for measurement unit idications (MB, %)*/
+span.measurement-unit{
+	margin-left:-10px;
+	padding-right:50%;
+}
+
+input.toggle{
+	padding-right:50%;	
+}
+
+/*dividers*/
+div.primary-divider{
+	background-color:#777;
+	color:white;
+	text-align:center;
+}
+div.secondary-divider{
+	color:#4a87ee;
+	background-color:white;
+	padding-left:22px;
+	font-size:18px;
+	font-weight:500;	
+}
+span.primary-label{
+	color:#4a87ee;
+	background-color:white;
+	/*padding-left:15px;*/
+	font-size:18px;	
+	font-weight:500;
+}
+/*when ng-pattern is not matching regex*/
+.ng-invalid  { border: 1px solid red; }
+
+div.list{
+	margin-bottom:0px;
 }

@@ -6,33 +6,33 @@ app.controller('DiagramController', function ($scope, $http, $interval, ApiEndpo
   //     console.log('ela kalispera')
   //   })
 
-    $interval(function(){//run every 10(should be dynamically configured by user) seconds to refresh dataset
+    // $interval(function(){//run every 10(should be dynamically configured by user) seconds to refresh dataset
 
-      refreshDatasets();
+      // refreshDatasets();
 
-    },1000);
+    // },1000);
 
-    refreshDatasets = function(){
+    // refreshDatasets = function(){
 
       CPUResource.get({}).$promise.then(
         function(response){
           $scope.cpuDataset = response
-          console.log($scope.cpuDataset)
+          // console.log($scope.cpuDataset)
         },
         function(reason) {
-          alert('Error: ' + reason);
+          console.log('Error: ' + reason);
         });
 
       CPUResource.get({}).$promise.then(
         function(response){
           $scope.ramDataset = response
-          console.log($scope.ramDataset)
+          // console.log($scope.ramDataset)
         },
         function(reason) {
-          alert('Error: ' + reason);
+          console.log('Error: ' + reason);
         });    
 
-    }
+    // }
 
     $scope.test = 0;
     $interval(function(){//run every 10(should be dynamically configured by user) seconds to refresh dataset
