@@ -1,21 +1,27 @@
-app.controller('ConfigurationController', function ($scope, ConfigResource, HelperService) {
+app.controller('ConfigurationController', function ($scope, $localStorage, ConfigResource, HelperService) {
   
   //values in Local Storage --------------------------------- 
   // Server Info
-  $scope.serverInfo = {
-    ip: "10.1.0.1",
-    port: "8080"  
-  }
 
+  $scope.serverInfo= $localStorage.serverInfo;
 
   $scope.saveServerInfo = function(serverInfo){
-    console.log(serverInfo);
+    // console.log(serverInfo);
+    $localStorage.serverInfo = serverInfo;    
   }    
-  
+
   //User Preferances
-  $scope.userPreferences = {
-  	notifications : true
+  if(!$localStorage.userPreferences){//if there is no value in local storage use default values
+    $localStorage.userPreferences = {//initialize object
+     notifications : true
+    };
   }
+  $scope.userPreferences = $localStorage.userPreferences;
+
+  $scope.saveUserPreferences = function(userPreferences){
+    // console.log(userPreferences);
+    $localStorage.userPreferences = userPreferences;    
+  }     
 
 
   //values from API ----------------------------------------
@@ -29,7 +35,14 @@ app.controller('ConfigurationController', function ($scope, ConfigResource, Help
     });
 
     $scope.saveLimits = function(limits){
-      console.log(limits);
+      console.log(limits)
+      ConfigResource.post(limits).$promise.then(
+        function(response){
+          console.log(response)
+        },
+        function(reason) {
+          console.log('Error: ' + reason);
+        });
     }  
 
 })
