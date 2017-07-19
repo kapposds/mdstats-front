@@ -6,11 +6,11 @@
 // 'starter.controllers' is found in controllers.js
 app = angular.module('mdstats', ['ionic', 'mdstats.controllers', 'highcharts-ng','ngResource','ionic-material','ngStorage', 'ngCordova'])
   .constant('ApiEndpoint', {
-    url: 'http://192.168.1.2:5000' // api endpoint: address where laravel project "csunipi_server" is served
+    url: 'http://192.168.1.3:5000' // api endpoint: address where laravel project "csunipi_server" is served
   })
 
-app.run(function ($ionicPlatform, $rootScope, $ionicLoading, $http, HelperService, ApiEndpoint) {  //this is executed only once after the app runs
-              HelperService.serverErrorPopup();    
+app.run(function ($ionicPlatform, $rootScope, $ionicLoading, $http, $timeout,
+                  HelperService, ApiEndpoint) {  //this is executed only once after the app runs
 
   //Handle Loading Gesture (broadcasts httpInterceptor service)
   //$rootScope.$on listens to $rootScope.$broadcast
@@ -73,10 +73,10 @@ app.run(function ($ionicPlatform, $rootScope, $ionicLoading, $http, HelperServic
         $http.get(ApiEndpoint.url+'/api/ping')//check if server is responding
         .success(function (response) {
           //server responded
-          console.log(response);
+          // console.log(response);
         })
         .error(function(data) {
-          console.log(data);
+          // console.log(data);
             HelperService.serverErrorPopup();      
             $ionicLoading.hide();            
         });    

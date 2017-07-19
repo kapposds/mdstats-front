@@ -3,7 +3,7 @@ app.service('HelperService', function($ionicPopup, $state)
 this.connectionErrorPopup = function ()
     {
       $ionicPopup.show({ //show error popup
-          title: "Connection Error",
+          title: "No Connection",
           content: "You are disconnected. Please check your connection.",
     buttons: [
       { text: 'ΟΚ',
@@ -40,16 +40,16 @@ this.connectionErrorPopup = function ()
     this.reconnectPopup = function ()
     {
       $ionicPopup.show({ //show popup
-          title: "Connection Success",
-          content: "You have reconnected. If page is not loaded properly, return to the 'Home' page",
+          title: "Connection Established",
+          content: "You have reconnected. Reload if page is not loaded properl",
     buttons: [
       { text: 'ΟΚ',
         type: 'button-positive',},
       {
-        text: 'Home',
+        text: 'Reload',
         type: 'button-positive',
         onTap: function() {
-			$state.go('app.home');
+			$state.go($state.current.name);
         }
       }
     ]          

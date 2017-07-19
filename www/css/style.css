@@ -66,6 +66,7 @@ div.list{
   background-color:orange!important;
   text-transform:none!important;
   white-space:normal!important;
+  padding:0 0 0 0!important;
 }
 /*ionic loading spinner*/
 .spinner-android {
