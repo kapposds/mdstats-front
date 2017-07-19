@@ -1,6 +1,6 @@
 angular.module('mdstats.controllers', [])
 
-app.controller('AppController', function ($scope, $ionicModal, $timeout) {
+app.controller('AppController', function ($scope, $ionicModal, $timeout ,$ionicSideMenuDelegate, $ionicHistory) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -8,6 +8,16 @@ app.controller('AppController', function ($scope, $ionicModal, $timeout) {
   // $scope.$on('$ionicView.enter', function(e) {
   // });
 
+  //using this function instead of directive menu-close on each ion item to make use of $ionicHistory stack (+back button)
+  $scope.toggleMenu = function()
+  {
+    $ionicHistory.nextViewOptions({
+        disableAnimate: true
+    });
+    $ionicSideMenuDelegate.toggleRight(); //close side menu
+  }  
+
+  //Login-----------------------------------------------------------------------------------
   // Form data for the login modal
   $scope.loginData = {}
 

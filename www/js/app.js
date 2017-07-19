@@ -4,13 +4,88 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-app = angular.module('mdstats', ['ionic', 'mdstats.controllers', 'highcharts-ng','ngResource','ionic-material','ngStorage'])
+app = angular.module('mdstats', ['ionic', 'mdstats.controllers', 'highcharts-ng','ngResource','ionic-material','ngStorage', 'ngCordova'])
   .constant('ApiEndpoint', {
     url: 'http://192.168.1.2:5000' // api endpoint: address where laravel project "csunipi_server" is served
   })
 
-app.run(function ($ionicPlatform) {
-  $ionicPlatform.ready(function () {
+app.run(function ($ionicPlatform, $rootScope, $ionicLoading, $http, HelperService, ApiEndpoint) {  //this is executed only once after the app runs
+              HelperService.serverErrorPopup();    
+
+  //Handle Loading Gesture (broadcasts httpInterceptor service)
+  //$rootScope.$on listens to $rootScope.$broadcast
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show()/*{template: 'foo'}*/
+    // console.log('show')
+  })
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide()
+    // console.log('hide')
+  })  
+
+
+  //Handle Connection Errors
+  $rootScope.initialTime = true;
+
+  function handleOffline()
+  {
+    HelperService.connectionErrorPopup(); //show error popup
+    $timeout(function () {
+      $ionicLoading.hide();    
+    }, 1000);
+  }
+
+  function handleOnline()
+  {
+    HelperService.reconnectPopup();
+    $timeout(function () {
+      $ionicLoading.hide();    
+    }, 1000);    
+  }
+
+
+  $ionicPlatform.ready(function () { //when device is ready, or if it is ready execute immedeately
+
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+        if(!$rootScope.initialTime)//not for the first time
+          handleOnline();
+        if ($rootScope.initialTime==true)//not first time anymore
+          $rootScope.initialTime = false;
+    });
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+        if(!$rootScope.initialTime)//not for the first time      
+          handleOffline();
+        if ($rootScope.initialTime==true)//not first time anymore
+          $rootScope.initialTime = false;
+    });
+
+    //Connection and Server Check on every state change
+    $rootScope.$on('$stateChangeSuccess', function(e, current, pre) {
+      if(navigator.onLine == false) //no connection on device
+      {
+        if(!$rootScope.initialTime)//not for the first time
+          handleOffline();
+      }
+      else{ //check server only if connection is ok
+        $http.get(ApiEndpoint.url+'/api/ping')//check if server is responding
+        .success(function (response) {
+          //server responded
+          console.log(response);
+        })
+        .error(function(data) {
+          console.log(data);
+            HelperService.serverErrorPopup();      
+            $ionicLoading.hide();            
+        });    
+     }
+
+        if ($rootScope.initialTime==true)//not first time anymore
+          $rootScope.initialTime = false;  
+    });
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -26,8 +101,8 @@ app.run(function ($ionicPlatform) {
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-    //use custom interceptor to httpProvider service
-    // $httpProvider.interceptors.push('httpInterceptor');
+    //use custom interceptors to httpProvider service
+    $httpProvider.interceptors.push('httpInterceptor')
 
     $stateProvider
 

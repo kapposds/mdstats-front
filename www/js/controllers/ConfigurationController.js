@@ -1,8 +1,8 @@
-app.controller('ConfigurationController', function ($scope, $localStorage, ConfigResource, HelperService) {
+app.controller('ConfigurationController', function ($scope, $localStorage, ConfigResource, HelperService, $ionicLoading) {
   
   //values in Local Storage --------------------------------- 
   // Server Info
-
+$ionicLoading.show();
   $scope.serverInfo= $localStorage.serverInfo;
 
   $scope.saveServerInfo = function(serverInfo){

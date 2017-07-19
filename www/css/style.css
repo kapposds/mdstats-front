@@ -48,3 +48,31 @@ span.primary-label{
 div.list{
 	margin-bottom:0px;
 }
+
+/*ionic loading spinner*/
+.spinner-android {
+    stroke: white;
+}
+/*ionic loading container*/
+.loading-container .loading {
+    padding:25px;
+    background-color: rgba(37, 36, 32, 0.7);
+}
+
+/*ionic popup & loading----------------------------------------------------*/
+/*ionic popup*/
+.popup-buttons .button
+{
+  background-color:orange!important;
+  text-transform:none!important;
+  white-space:normal!important;
+}
+/*ionic loading spinner*/
+.spinner-android {
+    stroke: white;
+}
+/*ionic loading container*/
+.loading-container .loading {
+    padding:25px;
+    background-color: rgba(37, 36, 32, 0.7);
+}
